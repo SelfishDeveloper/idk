@@ -1,0 +1,130 @@
+
+$start: 1; 
+$end: 5; 
+
+
+
+.slider {
+  &__item {
+    @include default-transition(all);
+
+    @for $slide from $start through $end {
+
+      &--#{$slide} {
+
+
+        @for $i from $start through $end {
+
+          @if $i <= $slide - 3 {
+           
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: -1;
+
+              opacity: 0;
+
+              transform: translateX(210px) scale(0.65);
+            }
+          }
+
+          @if $i == $slide - 2 {
+            
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: 0;
+              transform: translateX(210px) scale(0.65);
+
+              @media (max-width: 900px) {
+                transform: translateX(170px) scale(0.65);
+              }
+
+              @media (max-width: 768px) {
+                opacity: 0;
+              }
+            }
+          }
+
+          @if $i == $slide - 1 {
+            
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: 1;
+              margin-left: -500px;
+              transform: translateX(100px) scale(0.85);
+
+              @media (max-width: 768px) {
+                opacity: 0.6;
+              }
+            }
+          }
+
+          @if $i == $slide {
+           
+            #slide-#{$i}:checked ~ .slider__holder & {
+              position: relative;
+              z-index: 2;
+              transform: translate(0) scale(1);
+            }
+          }
+
+          @if $i == $slide + 1 {
+           
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: 1;
+              margin-left: 500px;
+              transform: translateX(-100px) scale(0.85);
+
+              @media (max-width: 768px) {
+                opacity: 0.6;
+              }
+            }
+          }
+
+          @if $i == $slide + 2 {
+           
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: 0;
+              margin-right: 500px;
+              transform: translateX(-210px) scale(0.85);
+
+              @media (max-width: 900px) {
+                transform: translateX(-170px) scale(0.65);
+              }
+
+              @media (max-width: 768px) {
+                opacity: 0;
+              }
+            }
+          }
+
+          @if $i >= $slide + 3 {
+            
+            #slide-#{$i}:checked ~ .slider__holder & {
+              z-index: -1;
+
+              opacity: 0;
+
+              transform: translateX(-210px) scale(0.65);
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.bullets {
+
+  
+  &__item {
+    @include default-transition();
+
+   
+    @for $bullet from $start through $end {
+
+      &--#{$bullet} {
+        #slide-#{$bullet}:checked ~ .bullets & {
+          background: $white;
+        }
+      }
+    }
+  }
+}

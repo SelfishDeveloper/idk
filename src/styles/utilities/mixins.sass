@@ -1,0 +1,35 @@
+@mixin container
+  display: flex
+  padding-left: 15px
+  padding-right: 15px
+  margin-left: auto
+  margin-right: auto
+  @media (min-width: 996px)
+        max-width: 865px
+  @media (min-width: 1200px)
+        max-width: 1124px
+  @media (min-width: 1441px)
+        max-width: 1440px
+  @media (min-width: 1601px)
+        max-width: 1600px
+
+@mixin default-transition($param: all) 
+	transition: $param $normal-transition-time $default-ease
+
+
+
+$normal-transition-time: 0.2s
+$default-ease: ease
+
+
+@mixin translateX($value: -50%) 
+	transform: translateX($value)
+
+
+@mixin translateY($value: -50%)
+	transform: translateY($value)
+
+
+@mixin translateXY($value: -50%)
+	transform: translate($value , $value)
+
